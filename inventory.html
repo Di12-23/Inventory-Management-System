@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Owner Dashboard</title>
+<link rel="stylesheet" href="inventory.css">
+</head>
+<body>
+<h1>Owner Dashboard</h1>
+<div class="inventory-container">
+    <div class="product" id="product1">
+        <span>Product Size: 40</span>
+        <span>Available Quantity: <span id="quantity1">0</span></span>
+        <button onclick="addToInventory(40)">Add to Inventory</button>
+        <button onclick="removeFromInventory(40)">Remove from Inventory</button>
+    </div>
+    <div class="product" id="product2">
+        <span>Product Size: 20</span>
+        <span>Available Quantity: <span id="quantity2">0</span></span>
+        <button onclick="addToInventory(20)">Add to Inventory</button>
+        <button onclick="removeFromInventory(20)">Remove from Inventory</button>
+    </div>
+    <div class="product" id="product3">
+        <span>Product Size: 10</span>
+        <span>Available Quantity: <span id="quantity3">0</span></span>
+        <button onclick="addToInventory(10)">Add to Inventory</button>
+        <button onclick="removeFromInventory(10)">Remove from Inventory</button>
+    </div>
+    <div class="product" id="product4">
+        <span>Product Size: 10</span>
+        <span>Available Quantity: <span id="quantity4">0</span></span>
+        <button onclick="addToInventory(10)">Add to Inventory</button>
+        <button onclick="removeFromInventory(10)">Remove from Inventory</button>
+    </div>
+</div>
+<script src="inventory.js"></script>
+</body>
+</html>
