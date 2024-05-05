@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Items Table</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: hsl(209, 86%, 60%);
+        }
+        body {
+            background-image: url('images.jpg'); /* Specify the path to your image */
+            background-size: cover; /* Cover the entire background */
+            background-repeat: no-repeat; /* Prevent the image from repeating */
+        }
+        td:hover {
+    background-color: hsl(71, 85%, 49%); /* Change to desired hover color */
+}
+    </style>
+</head>
+<body>
+    <h1 align="center">Items Table</h1>
+    <table id="items-table">
+        <thead>
+            <tr>
+                <th>Item ID</th>
+                <th>Name</th>
+                <th>Expiry</th>
+                <th>Size</th>
+                <th>Position</th>
+                <th>Quantity</th>
+                <th>Perishable</th>
+                <th>Type</th>
+                <th>Customer ID</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in total_items_table %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+                <td>{{ row[5] }}</td>
+                <td>{{ row[6] }}</td>
+                <td>{{ row[7] }}</td>
+                <td>{{ row[8] }}</td>
+                <td><button onclick="addToCart('{{ row[0] }}')" style="background-color: green; color: white; border: none; padding: 5px 10px; cursor: pointer;">Add to Cart</button></td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        const itemsTable = document.getElementById('items-table');
+        let isAscending = true;
+
+        function sortTable(columnIndex) {
+            const rows = Array.from(itemsTable.querySelectorAll('tr')).slice(1); // Exclude the header row
+            rows.sort((a, b) => {
+                let aValue = a.children[columnIndex].textContent.trim();
+                let bValue = b.children[columnIndex].textContent.trim();
+                if (columnIndex === 0 || columnIndex === 5) {
+                    aValue = parseInt(aValue);
+                    bValue = parseInt(bValue);
+                }
+                if (isAscending) {
+                    return aValue > bValue ? 1 : -1;
+                } else {
+                    return aValue < bValue ? 1 : -1;
+                }
+            });
+            rows.forEach(row => itemsTable.appendChild(row));
+            isAscending = !isAscending;
+        }
+
+        // Add event listeners to the table headers for sorting
+        const headers = itemsTable.querySelectorAll('th');
+        headers.forEach((header, index) => {
+            header.addEventListener('click', () => {
+                sortTable(index);
+            });
+        });
+    </script>
+</body>
+</html>
