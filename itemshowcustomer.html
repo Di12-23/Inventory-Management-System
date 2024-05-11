@@ -99,6 +99,23 @@
                 sortTable(index);
             });
         });
+
+        fetch('http://localhost:8000/api/data', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({ key: 'value' }),
+})
+  .then(response => response.json())
+  .then(data => {
+    // Process the response from the backend
+    console.log(data);
+  })
+  .catch(error => {
+    // Handle any errors that occur during the request
+    console.error('Error:', error);
+  });
     </script>
 </body>
 </html>
