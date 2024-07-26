@@ -1,0 +1,51 @@
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Container, Grid, Paper, Typography } from '@material-ui/core';
+
+const DashboardScreen = () => {
+    const itemList = useSelector((state) => state.itemList);
+    const { items } = itemList;
+
+    const orderList = useSelector((state) => state.orderList);
+    const { orders } = orderList;
+
+    return (
+        <Container>
+            <Typography variant="h4" gutterBottom>
+                Dashboard
+            </Typography>
+            <Grid container spacing={3}>
+                <Grid item xs={12} md={6}>
+                    <Paper style={{ padding: 16 }}>
+                        <Typography variant="h6">Total Items</Typography>
+                        <Typography variant="h3">{items.length}</Typography>
+                    </Paper>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                    <Paper style={{ padding: 16 }}>
+                        <Typography variant="h6">Total Orders</Typography>
+                        <Typography variant="h3">{orders.length}</Typography>
+                    </Paper>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                    <Paper style={{ padding: 16 }}>
+                        <Typography variant="h6">Low Stock Alerts</Typography>
+                        <Typography variant="h3">
+                            {items.filter((item) => item.stock < 5).length}
+                        </Typography>
+                    </Paper>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                    <Paper style={{ padding: 16 }}>
+                        <Typography variant="h6">Recent Orders</Typography>
+                        {orders.slice(0, 5).map((order) => (
+                            <Typography key={order._id}>{order._id}</Typography>
+                        ))}
+                    </Paper>
+                </Grid>
+            </Grid>
+        </Container>
+    );
+};
+
+export default DashboardScreen;
